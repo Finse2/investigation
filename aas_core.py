@@ -1,5 +1,7 @@
-from machine import machine
+from machine import Machine
 import aas_core3.types as aas_types
+
+machine = Machine("Machine-01")
 
 temperature_property = aas_types.Property(
     id_short="Temperature",
@@ -30,3 +32,23 @@ max_RPM_property = aas_types.Property(
     value=str(machine.max_rpm),
     value_type=aas_types.DataTypeDefXSD.INT
 )
+
+
+operational_data = aas_types.Submodel(
+    id ="urn:example:machine-01:operational-data",
+    id_short="OperationalData",
+
+    submodel_elements= [
+        temperature_property,
+        rpm_property,
+        running_property,
+        max_temperature_property,
+        max_RPM_property
+    ]
+)
+
+print(operational_data.id)
+print(operational_data.id_short)
+
+for element in operational_data.submodel_elements:
+    print(element.id_short, element.value)

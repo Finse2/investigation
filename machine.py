@@ -75,23 +75,3 @@ class Machine:
             "rpm": self.rpm,
             "running": self.running
         }
-
-
-# Create a machine with the default operating limits.
-machine = Machine("Machine-01")
-
-# Display its name, initial temperature, and limits.
-print(machine.name)
-print(machine.temperature)
-print(machine.max_temperature)
-print(machine.max_rpm)
-
-# Start the machine at zero RPM.
-print(machine.start(2500))
-print(machine.running)
-print(machine.rpm)
-
-# Perform 100 simulation updates and display the state after each one.
-for i in range(100):
-    result = machine.update()
-    print(machine.get_status())
