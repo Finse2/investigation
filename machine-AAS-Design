@@ -1,0 +1,46 @@
+Machine-01
+   │
+   ▼
+Machine-01-AAS
+   │
+   └── OperationalData
+       ├── Temperature = 42.7
+       ├── RPM = 2500
+       ├── Running = true
+       ├── MaxTemperature = 80
+       └── MaxRPM = 5000
+
+
+Asset:
+    Machine-01
+
+AAS:
+    Machine-01-AAS
+
+Submodel:
+    OperationalData
+
+    Property:
+        idShort = "Temperature"
+        value = self.temperature
+        valueType = double
+
+    Property:
+        idShort = "RPM"
+        value = self.rpm
+        valueType = integer
+
+    Property:
+        idShort = "Running"
+        value = self.running
+        valueType = boolean
+
+    Property:
+        idShort = "MaxTemperature"
+        value = self.max_temperature
+        valueType = integer
+
+    Property:
+        idShort = "MaxRPM"
+        value = self.max_rpm
+        valueType = integer
