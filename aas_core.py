@@ -47,8 +47,40 @@ operational_data = aas_types.Submodel(
     ]
 )
 
+operational_data_reference = aas_types.Reference (
+    type = aas_types.ReferenceTypes.MODEL_REFERENCE,
+    keys = [
+        aas_types.Key(
+            type=aas_types.KeyTypes.SUBMODEL,
+            value= operational_data.id
+        )
+    ]
+)
+
+asset_information = aas_types.AssetInformation(
+    asset_kind=aas_types.AssetKind.INSTANCE,
+    global_asset_id="urn:example:machine-01"
+)
+
+machine_aas = aas_types.AssetAdministrationShell(
+    id="urn:example:machine-01:aas",
+    id_short="Machine01AAS",
+    
+    asset_information=asset_information,
+    
+    submodels=[operational_data_reference]
+)
+
 print(operational_data.id)
 print(operational_data.id_short)
 
 for element in operational_data.submodel_elements:
     print(element.id_short, element.value)
+    
+print(machine_aas.id)
+print(machine_aas.id_short)
+print(machine_aas.asset_information.global_asset_id)
+
+for reference in machine_aas.submodels:
+    for key in reference.keys:
+        print(key.type, key.value)
